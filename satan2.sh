@@ -31,6 +31,8 @@ uid_root=0
 Check_dependencies()
 {
 success=0
+
+clear
 echo "Check dependencies..."
 if command -v zuluCrypt-cli>/dev/null 2>&1;then
     echo;echo "${green}zuluCrypt-cli found.${reset}"
@@ -44,6 +46,11 @@ fi
 main()
 {
 Check_dependencies
+
+echo "List of disks: ";echo"";lsblk -d|tail -n+2|awk '{print $1" "$4}'|nl -v 0 -w2 -s'> ';echo "";read -p "Your choice: " userchoice
+disks=( $(lsblk -d|tail -n+2|awk '{print $1}') )
+echo "${green}${disks[userchoice]} ${reset}selected."
+
 exit $success
 }
 
