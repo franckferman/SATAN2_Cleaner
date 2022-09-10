@@ -1,4 +1,5 @@
 <div id="top"></div>
+
 <div id="top" align="center">
 
 [![Contributors][contributors-shield]](https://github.com/franckferman/SATAN2_Cleaner/graphs/contributors)
@@ -17,14 +18,18 @@
   </a>
 
 <h3 align="center">SATAN2_Cleaner</h3>
+  
   <p align="center">
 
     Anti Forensic Tool - A tool to destroy all traces on an external storage device.
 
     <br />
     <a href="https://github.com/franckferman/SATAN2_Cleaner/blob/main/README.md"><strong>Explore the full documentation »</strong></a>
+    
     <br />
+    
     <br />
+    
     <a href="https://asciinema.org/a/Rjq1ZgtQ78G02PNWNwdGWsMuw">View Demo</a>
     .
     <a href="https://github.com/franckferman/SATAN2_Cleaner/issues">Report Bug</a>
