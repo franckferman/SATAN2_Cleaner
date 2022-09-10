@@ -1,7 +1,4 @@
-# SATAN2_Cleaner
-Anti Forensic Tool - A tool to destroy all traces on an external storage device.
 <div id="top"></div>
-
 <div id="top" align="center">
 
 [![Contributors][contributors-shield]](https://github.com/franckferman/SATAN2_Cleaner/graphs/contributors)
@@ -20,7 +17,6 @@ Anti Forensic Tool - A tool to destroy all traces on an external storage device.
   </a>
 
 <h3 align="center">SATAN2_Cleaner</h3>
-
   <p align="center">
 
     Anti Forensic Tool - A tool to destroy all traces on an external storage device.
