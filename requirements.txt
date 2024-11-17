@@ -1,6 +1,6 @@
 # SATAN2 Cleaner - Requirements
 
-pycryptodome==3.17
+pycryptodome==3.19.1
 typer==0.6.1
 
 # Note: The script requires PowerShell for Windows operations
