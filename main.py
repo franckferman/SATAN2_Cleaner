@@ -27,7 +27,8 @@ def main(
     erase_method: str = typer.Option('securepass', help="Erase method ('dod3pass', 'dod7pass', 'securepass', 'quickformat')"),
     nuke: bool = typer.Option(False, help="Make the data on the disk unrecoverable"),
     nuke_passes: int = typer.Option(3, help="Number of passes for the NUKE operation (3 or 7)"),
-    algorithm: str = typer.Option('AES', help="Encryption algorithm ('AES' or 'ChaCha20')", case_sensitive=False)
+    algorithm: str = typer.Option('AES', help="Encryption algorithm ('AES' or 'ChaCha20')", case_sensitive=False),
+    security_level: str = typer.Option('default', help="Security level ('default', 'fast', 'ultra_fast')", case_sensitive=False)
 ):
     """
     Main function to handle disk operations including formatting, secure erasing, and nuking disks.
@@ -40,6 +41,7 @@ def main(
         nuke (bool): Whether to make data on the disk unrecoverable.
         nuke_passes (int): Number of passes for the nuke operation (3 or 7).
         algorithm (str): Encryption algorithm to use ('AES' or 'ChaCha20').
+        security_level (str): Security level to use ('default', 'fast', 'ultra_fast').
     """
     try:
         algorithm = algorithm.upper()
@@ -79,13 +81,37 @@ def main(
             disk_manager.quick_format_disk(selected_disk)
 
         if secure_erase:
-            disk_manager.secure_erase_disk(selected_disk, method=erase_method, algorithm=algorithm)
+            if security_level == 'default':
+                # Quick format -> Encrypt -> Quick format -> Encrypt -> Secure delete -> Encrypt
+                disk_manager.quick_format_disk(selected_disk)
+                disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+                disk_manager.quick_format_disk(selected_disk)
+                disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+                disk_manager.secure_erase_disk(selected_disk, method=erase_method, algorithm=algorithm)
+                disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+            elif security_level == 'fast':
+                # Quick format -> Encrypt -> Secure delete
+                disk_manager.quick_format_disk(selected_disk)
+                disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+                disk_manager.secure_erase_disk(selected_disk, method='quickformat', algorithm=algorithm)
+            elif security_level == 'ultra_fast':
+                # Quick format -> Encrypt -> Quick format
+                disk_manager.quick_format_disk(selected_disk)
+                disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+                disk_manager.quick_format_disk(selected_disk)
 
         if nuke:
             if nuke_passes not in [3, 7]:
                 print("Number of passes must be 3 or 7.")
                 raise SystemExit
-            disk_manager.nuke_disk(selected_disk, algorithm=algorithm, passes=nuke_passes)
+            # Quick format -> Encrypt -> Quick format -> Encrypt -> Secure delete (3 passes) -> Encrypt -> Quick format
+            disk_manager.quick_format_disk(selected_disk)
+            disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+            disk_manager.quick_format_disk(selected_disk)
+            disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+            disk_manager.secure_erase_disk(selected_disk, passes=3, algorithm=algorithm)
+            disk_manager.encrypt_disk(selected_disk, algorithm=algorithm)
+            disk_manager.quick_format_disk(selected_disk)
 
     except (DiskNotFoundError, InvalidDiskFormatError, UnsupportedAlgorithmError, InvalidEraseMethodError) as e:
         print("Error:", e)
