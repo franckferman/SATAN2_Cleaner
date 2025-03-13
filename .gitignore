@@ -1,0 +1,200 @@
+# ==============================
+# 🦫 Golang
+# ==============================
+
+# Go module caches
+pkg/
+.gocache/
+.go-build/
+
+# Go workspace file (optional in multi-module repos)
+go.work
+go.work.sum
+
+# Staticcheck and other linter/analysis tools caches
+staticcheck.cache/
+golangci-lint-report.xml
+
+# ==============================
+# 🦀 Rust
+# ==============================
+
+# Cargo lockfile (optional if lib), can be kept if binary-only project
+Cargo.lock
+
+# Cargo package and crates registry
+*.crate
+
+# Rust temporary files
+*.rlib
+*.d
+
+# Linter/formatting tools
+clippy.lint
+rustfmt.toml
+rustfmt_config.toml
+
+# Rust Analyzer (IDE support)
+.rust_analyzer.json
+
+# Coverage & test outputs
+*.profraw
+*.gcda
+*.gcno
+
+# ==============================
+# 🚀 Python
+# ==============================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+.hypothesis/
+
+# Translations
+*.mo
+*.pot
+
+# Django & Flask
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+
+# Jupyter Notebook & IPython
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+# PyBuilder, PDM, Poetry
+.pybuilder/
+target/
+.pdm.toml
+.pdm-python
+.pdm-build/
+poetry.lock
+
+# Type checking & debugging
+.mypy_cache/
+.pyre/
+.pytype/
+cython_debug/
+
+# ==============================
+# 🖥️  Shell/Bash Scripts
+# ==============================
+
+# Temporary and backup scripts
+*.bak
+*.swp
+*.swo
+*.swn
+*.orig
+*.tmp
+*.old
+
+# Log and debug files
+*.log
+*.log.*
+*.out
+*.err
+*.trace
+nohup.out
+
+# Generated files
+*.pid
+*.lock
+*.sock
+*.history
+
+# ==============================
+# 📝  Text editors
+# ==============================
+
+# Vim
+*.swp
+*.swo
+*.swn
+*.viminfo
+
+# Nano
+.nanorc
+*.save
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# JetBrains (PyCharm, IntelliJ, WebStorm)
+.idea/
+*.iml
+
+# Emacs
+*~
+*.spacemacs
+
+# ==============================
+# 💾  Operating systems
+# ==============================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100/
+.Trashes/
+._*
+__MACOSX/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+*.lnk
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*.lock
+*~
+
